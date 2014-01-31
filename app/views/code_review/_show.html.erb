@@ -127,7 +127,7 @@
 
 
 <% if authorize_for('code_review', 'reply') -%>
-<p><%= toggle_link l(:button_reply), "reply_#{@review.id}", :focus => 'reply_comment_' + @review.id.to_s %></p>
+<p><%= cr_toggle_link l(:button_reply), "reply_#{@review.id}", :focus0 => 'add_review_comment_submit', :focus => 'reply_comment_' + @review.id.to_s %></p>
 <div id="reply_<%= @review.id  %>" style="display:none;" class="box">
 <% form_for :reply, @reply, :url => {:action => 'reply', :id => @project, :review_id => @review.id}, :html => {:id => 'message-form'} do |f| %>
   <%= hidden_field_tag :review_id, @review.id %>
@@ -146,7 +146,7 @@
 <p>
   <%= f.text_area :comment,
                    :cols => 30,
-                   :rows => 10,
+                   :rows => 6,
                    :accesskey => accesskey(:edit),
                    :class => 'wiki-edit',
                    :id => 'reply_comment_' + @review.id.to_s %>

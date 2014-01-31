@@ -33,4 +33,12 @@ module CodeReviewHelper
 
     html
   end
+  
+  def cr_toggle_link(name, id, options={})
+    onclick = "Element.toggle('#{id}'); "
+	onclick << (options[:focus0] ? "Form.Element.focus('#{options[:focus0]}'); " : "")
+    onclick << (options[:focus] ? "Form.Element.focus('#{options[:focus]}'); " : "this.blur(); ")
+    onclick << "return false;"
+    link_to(name, "#", :onclick => onclick)
+  end
 end
