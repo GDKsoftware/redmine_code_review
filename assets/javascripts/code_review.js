@@ -254,7 +254,7 @@ function showReview(url, review_id, element) {
         zIndex: topZindex,
         resizable: true,
         title: review_dialog_title,
-        showEffect:Effect.Grow,
+        showEffect:Effect.Appear,
         showEffectOptions:{
             direction: 'top-left'
         },
@@ -287,7 +287,17 @@ function formPopup(evt, popup){
         zIndex: topZindex,
         resizable: true,
         title: add_form_title,
-        showEffect:Effect.Grow,
+		onShow: function() {
+			if (document.getElementById("review_subject").value == "") {
+			   document.getElementById("review_subject").value = "review";
+			}
+
+			var t1 = setTimeout(function() {
+				document.getElementById("review_comment").focus();
+				clearTimeout(t1);
+			}, 1200);
+		},
+        showEffect:Effect.Appear,
         showEffectOptions:{
             direction: 'top-left'
         },
